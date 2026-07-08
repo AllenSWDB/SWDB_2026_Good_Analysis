@@ -1,0 +1,9 @@
+{
+	"version": 1,
+	"base_image": "codeocean/code-server-python-extensions-pack:v5.0",
+	"options": {
+		"registry_host_arg": true,
+		"git_ask_pass": true,
+		"mount_secrets": true
+	}
+}
