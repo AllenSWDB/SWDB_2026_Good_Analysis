@@ -5,5 +5,33 @@
 		"registry_host_arg": true,
 		"git_ask_pass": true,
 		"mount_secrets": true
+	},
+	"installers": {
+		"conda": {
+			"packages": [
+				{
+					"name": "jupyter",
+					"version": "1.1.1"
+				}
+			]
+		},
+		"pip3": {
+			"packages": [
+				{
+					"name": "matplotlib"
+				},
+				{
+					"name": "numpy"
+				},
+				{
+					"name": "pandas"
+				},
+				{
+					"name": "scipy"
+				}
+			],
+			"options": {},
+			"pre_install_options": {}
+		}
 	}
 }
