@@ -18,6 +18,9 @@
 		"pip3": {
 			"packages": [
 				{
+					"name": "hdmf-zarr"
+				},
+				{
 					"name": "ipympl",
 					"version": "0.10.0"
 				},
