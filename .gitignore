@@ -148,3 +148,6 @@ dmypy.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 .vscode
+
+# Carrie local changes
+code/carrie-untracked/
