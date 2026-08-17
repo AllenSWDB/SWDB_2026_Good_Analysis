@@ -1,4 +1,4 @@
-# hash:sha256:82c7c99d5e2be8f24a9b213e6245e6aecdc424a7f420b19fc8d6864259e0a8f0
+# hash:sha256:c49bc731aeb6b57797d80f5ba1d4109b0de9e2c8427020c51aaefe8eb97a3d56
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/code-server-python-extensions-pack:v5.0
 
@@ -11,7 +11,7 @@ RUN conda install -y \
     && conda clean -ya
 
 RUN pip3 install -U --no-cache-dir \
-    hdmf-zarr \
+    hdmf-zarr==0.13.0 \
     ipympl==0.10.0 \
     matplotlib==3.11.1 \
     numpy==2.0.0 \
