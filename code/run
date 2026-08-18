@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
 set -ex
 
-jupyter nbconvert --to notebook --execute /code/circular-analysis-workshop_solutions.ipynb --inplace
+# Solutions notebooks import shared helpers with `from utils import ...`; utils.py lives in
+# /code, so make sure it's importable regardless of each notebook's own directory.
+export PYTHONPATH="/code:${PYTHONPATH}"
+
+for notebook in /code/Workshop-1_SimulatedAnalysis/solutions/*_solutions.ipynb; do
+    jupyter nbconvert --to notebook --execute "$notebook" --inplace
+done
