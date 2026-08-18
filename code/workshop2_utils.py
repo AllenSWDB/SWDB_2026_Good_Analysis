@@ -285,7 +285,7 @@ def blockout_cv(X, y, ids):
     acc : array (n_blocks,) — decoding accuracy for each held-out block
     """
     return np.array([
-        LinearDiscriminantAnalysis()
+        LinearDiscriminantAnalysis(solver='lsqr', shrinkage='auto')
         .fit(X[ids != b], y[ids != b])
         .score(X[ids == b], y[ids == b])
         for b in np.unique(ids)
