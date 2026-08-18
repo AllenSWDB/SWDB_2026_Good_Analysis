@@ -1,4 +1,8 @@
+# Code Ocean specific files and directories
 /data/
+/results/
+/scratch/
+metadata/metadata.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -141,7 +145,7 @@ dmypy.json
 **/.DS_Store
 
 # VS Code
-.vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
