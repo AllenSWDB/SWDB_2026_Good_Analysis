@@ -5,5 +5,57 @@
 		"registry_host_arg": true,
 		"git_ask_pass": true,
 		"mount_secrets": true
+	},
+	"installers": {
+		"conda": {
+			"packages": [
+				{
+					"name": "jupyter",
+					"version": "1.1.1"
+				}
+			]
+		},
+		"pip3": {
+			"packages": [
+				{
+					"name": "hdmf-zarr",
+					"version": "0.13.0"
+				},
+				{
+					"name": "ipympl",
+					"version": "0.10.0"
+				},
+				{
+					"name": "matplotlib",
+					"version": "3.11.1"
+				},
+				{
+					"name": "numpy",
+					"version": "2.5.1"
+				},
+				{
+					"name": "pandas",
+					"version": "3.0.5"
+				},
+				{
+					"name": "pynwb",
+					"version": "4.1.0"
+				},
+				{
+					"name": "rastermap",
+					"version": "1.0"
+				},
+				{
+					"name": "scikit-learn",
+					"version": "1.9.0"
+				},
+				{
+					"name": "scipy",
+					"version": "1.18.0"
+				}
+			],
+			"options": {},
+			"pre_install_options": {}
+		}
 	}
 }
