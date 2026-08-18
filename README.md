@@ -1,6 +1,2 @@
-# aind-capsule-template
-
-An updated template has been made. Use capsule-template-2025
-
-Basic structure of a capsule to be customized as needed.
-
+# 2026 SWDB Day 4 Workshops - Good Analysis
+Contributors: Pamela Reinagel, Nick Steinmetz, Tom Chartrand, Carrie Stine
