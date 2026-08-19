@@ -23,7 +23,7 @@ from scipy import stats
 # ---------------------------------------------------------------------------
 # Part 1: simulating the null session and the proposed (circular) workflow
 # ---------------------------------------------------------------------------
-def simulate_null_session(rng, Ngroups=20, Ncells=200, mP=75, sP=8, sA=1):
+def simulate_null_session(rng, Ngroups=20, Ncells=200, mean_perf=75, sd_perf=8, mean_dff=2, sd_dff=1):
     """Simulate a single null session (no real effect).
 
     Draws are made in the same order as in Part 1 so that, given the same seeded
@@ -38,8 +38,8 @@ def simulate_null_session(rng, Ngroups=20, Ncells=200, mP=75, sP=8, sA=1):
     CellXY : ndarray, shape (Ncells, 2)
         Random 2D position of each cell on the unit square.
     """
-    Perf = np.round(sP * rng.standard_normal(Ngroups) + mP)
-    DA = sA * rng.standard_normal(size=(Ngroups, Ncells))
+    Perf = np.round(sd_perf * rng.standard_normal(Ngroups) + mean_perf)
+    DA = sd_dff * rng.standard_normal(size=(Ngroups, Ncells)) + mean_dff
     CellXY = rng.uniform(0.0, 1.0, size=(Ncells, 2))
     return Perf, DA, CellXY
 
@@ -76,16 +76,17 @@ def annotate_corr(ax, PRCA, Perf, title):
 # ---------------------------------------------------------------------------
 # Part 2: valid workflows (train/test split and multiple-comparison correction)
 # ---------------------------------------------------------------------------
-def train_test_PRCA(DA, Perf, train_frac=0.5, generator=None):
+def train_test_PRCA(DA, Perf, train_frac=0.5, rng=None):
     """Single train/test split: select cells on the training trial groups, then compute
     and return PRCA on the held-out test trial groups (which played no part in selection).
 
     Returns ``(PRCA_test, Perf_test, selected_cells)``, or ``None`` if no cells selected.
     """
+    if rng is None:
+        rng = np.random.default_rng()
     Ng = DA.shape[0]
     idx = np.arange(Ng)
-    if generator is not None:
-        idx = generator.permutation(idx)  # randomize which groups are train vs test
+    idx = rng.permutation(idx)  # randomize which groups are train vs test
     n_train = int(round(train_frac * Ng))
     train_idx, test_idx = idx[:n_train], idx[n_train:]
 
@@ -114,15 +115,15 @@ def fdr_bh_cells(DA, Perf, q=0.05):
 # ---------------------------------------------------------------------------
 # Part 3: simulating a genuine effect
 # ---------------------------------------------------------------------------
-def simulate_real_effect(rng, Perf, Ncells, CorrelatedCells, k, sA=1):
+def simulate_real_effect(rng, Perf, Ncells, CorrelatedCells, k, sd_dff=1):
     """Simulate cell activity in which ``CorrelatedCells`` are genuinely modulated by Perf.
 
     A scaled, mean-zero function of performance is added on top of the noise for the
     correlated cells.  ``k`` sets the effect size relative to the noise.
     """
     Ngroups = Perf.shape[0]
-    Pscaled = (k * sA / np.std(Perf, ddof=1)) * (Perf - np.mean(Perf))
-    DA_real = sA * rng.standard_normal((Ngroups, Ncells))
+    Pscaled = (k * sd_dff / np.std(Perf, ddof=1)) * (Perf - np.mean(Perf))
+    DA_real = sd_dff * rng.standard_normal((Ngroups, Ncells))
     DA_real[:, CorrelatedCells] += Pscaled[:, np.newaxis]
     return DA_real
 
