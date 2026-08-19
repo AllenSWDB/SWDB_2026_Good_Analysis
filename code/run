@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 set -ex
 
-# This is the master script for the capsule. When you click "Reproducible Run", the code in this file will execute.
-python -u run_capsule.py "$@"
+# Solutions notebooks import shared helpers with `from utils import ...`; utils.py lives in
+# /code, so make sure it's importable regardless of each notebook's own directory.
+export PYTHONPATH="/code:${PYTHONPATH}"
+
+for notebook in /code/Workshop-1_SimulatedAnalysis/solutions/*.ipynb; do
+    jupyter nbconvert --to notebook --execute "$notebook" --inplace
+done
