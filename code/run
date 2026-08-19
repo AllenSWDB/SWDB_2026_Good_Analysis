@@ -8,3 +8,7 @@ export PYTHONPATH="/code:${PYTHONPATH}"
 for notebook in /code/Workshop-1_SimulatedAnalysis/solutions/*.ipynb; do
     jupyter nbconvert --to notebook --execute "$notebook" --inplace
 done
+
+for notebook in /code/solutions/*.ipynb; do
+    jupyter nbconvert --to notebook --execute "$notebook" --inplace
+done
