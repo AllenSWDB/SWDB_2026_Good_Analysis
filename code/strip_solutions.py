@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Clear outputs and blank out '#:' solution snippets in a notebook.
 
-Usage: python strip_solutions.py path/to/notebook.ipynb [output.ipynb] [-f]
+Usage: python strip_solutions.py path/to/notebook.ipynb [more.ipynb ...] [-o output_dir] [-f]
 """
 
 import argparse
@@ -47,9 +47,9 @@ def process_notebook(input_path, output_path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("notebook", help="Path to the input notebook")
+    parser.add_argument("notebooks", nargs="+", help="Path(s) to the input notebook(s)")
     parser.add_argument(
-        "output_dir", nargs="?", default=".",
+        "-o", "--output-dir", default=".",
         help="Path to write the result",
     )
     parser.add_argument(
@@ -58,11 +58,11 @@ def main():
     )
     args = parser.parse_args()
 
-    output_path = os.path.join(args.output_dir, os.path.basename(args.notebook))
-    if os.path.exists(output_path) and not args.force:
-        parser.error(f"{output_path} already exists; pass -f/--force to overwrite it")
-
-    process_notebook(args.notebook, output_path)
+    for notebook in args.notebooks:
+        output_path = os.path.join(args.output_dir, os.path.basename(notebook))
+        if os.path.exists(output_path) and not args.force:
+            parser.error(f"{output_path} already exists; pass -f/--force to overwrite it")
+        process_notebook(notebook, output_path)
 
 
 if __name__ == "__main__":
