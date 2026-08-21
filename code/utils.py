@@ -13,7 +13,7 @@ Ownership of the original inline definitions:
 - ``simulate_real_effect``
   -> Part 3 (``3_simulating-ground-truth_solutions.ipynb``)
 - ``loo_cv_PRCA``
-  -> Extension 3 (``extension-3_further-refinements_solutions.ipynb``)
+  -> Extension 1 (``extension-LOO-CV-power.ipynb``)
 """
 
 import numpy as np
@@ -129,7 +129,7 @@ def simulate_real_effect(rng, Perf, Ncells, CorrelatedCells, k, sd_dff=1):
 
 
 # ---------------------------------------------------------------------------
-# Extension 3: leave-one-out cross-validation
+# Extension 1: leave-one-out cross-validation
 # ---------------------------------------------------------------------------
 def loo_cv_PRCA(DA, Perf):
     """Leave-one-out cross-validated PRCA.
