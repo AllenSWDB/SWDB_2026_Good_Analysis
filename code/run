@@ -5,10 +5,10 @@ for notebook in /code/Workshop-1_SimulatedAnalysis/solutions/*.ipynb; do
     jupyter nbconvert --to notebook --execute "$notebook" --inplace
 done
 
-for notebook in /code/solutions/*.ipynb; do
+for notebook in /code/Workshop-2_NonsenseCorrelations/solutions/*.ipynb; do
     jupyter nbconvert --to notebook --execute "$notebook" --inplace
 done
 
-for notebook in /code/mini-workships/*/*solutions.ipynb; do
+for notebook in /code/Workshop-2_NonsenseCorrelations/Workshop-2_minis/*/*solutions.ipynb; do
     jupyter nbconvert --to notebook --execute "$notebook" --inplace
 done
