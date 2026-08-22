@@ -1,14 +1,17 @@
 #!/usr/bin/env bash
 set -ex
 
+mkdir /results/solutions
+cd /results/solutions
+
 for notebook in /code/Workshop-1_SimulatedAnalysis/solutions/*.ipynb; do
-    jupyter nbconvert --to notebook --execute "$notebook" --inplace
+    jupyter nbconvert --to html --execute "$notebook"
 done
 
 for notebook in /code/Workshop-2_NonsenseCorrelations/solutions/*.ipynb; do
-    jupyter nbconvert --to notebook --execute "$notebook" --inplace
+    jupyter nbconvert --to html --execute "$notebook"
 done
 
 for notebook in /code/Workshop-2_NonsenseCorrelations/Workshop-2_minis/*/*solutions.ipynb; do
-    jupyter nbconvert --to notebook --execute "$notebook" --inplace
+    jupyter nbconvert --to html --execute "$notebook"
 done

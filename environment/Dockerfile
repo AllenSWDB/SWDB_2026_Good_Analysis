@@ -1,14 +1,10 @@
-# hash:sha256:d6dd9836c8af8556a2432d06bf037ff62dc1bde9571cdb7b93e396cd127dccc2
+# hash:sha256:9a18af007a5b5bbdb66ea5d01bb698388a9f11b69f957772d88452560a70b219
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/swdb:Python3.12code-server4.133
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG GIT_ASKPASS
 COPY git-ask-pass /
-
-RUN conda install -y \
-        jupyter==1.1.1 \
-    && conda clean -ya
 
 RUN pip3 install -U --no-cache-dir \
     hdmf-zarr==0.13.0 \
